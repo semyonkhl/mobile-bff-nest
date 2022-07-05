@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
+
 import { SearchSuggestionsService } from './search-suggestions.service';
 
 @Controller('search-suggestions')
@@ -8,7 +10,7 @@ export class SearchSuggestionsController {
   ) {}
 
   @Get()
-  getSearchSuggestions(): string {
-    return this.SearchSuggestionsService.getSearchSuggestions();
+  getSearchSuggestions(@Req() req: Request) {
+    return this.SearchSuggestionsService.getSearchSuggestions(req);
   }
 }
